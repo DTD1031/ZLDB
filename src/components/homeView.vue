@@ -1,9 +1,14 @@
 <template>
     <div>
       <!--banner-->
-      <div style="height: 50px;width: 100%;background-color: #42b983"></div>
-      <h1>豆瓣电影 Top {{result}} </h1>
-      <img style="width: 80%;height: 130px;margin-left: auto" src="http://bannerdesign.cn/wp-content/uploads/2015/12/2015121211243866.jpeg">
+      <div style="height: 55px;width: 100%;text-align: left;background-color: #42b983">
+        <input id="searchInput" v-model="searchString"></input>
+        <button id="searchBt">搜索</button>
+      </div>
+      <!--Loading-->
+      <h1 id="loading" v-if="!result">页面加载中...</h1>
+      <!--Title-->
+      <h1 v-if="result" style="text-align: center;">豆瓣电影 Top {{result}} </h1>
       <!--list-->
       <div>
         <HomeCell
@@ -13,13 +18,10 @@
           v-bind:name="item['title']"
           v-bind:mark="item['rating'].average"
           v-bind:imgsrc="item['images'].large"
+          v-bind:year="item['year']"
+          v-bind:original_title="item['original_title']"
         >
         </HomeCell>
-        <!--<ul>-->
-          <!--<li v-for="article in articles">-->
-            <!--{{article.title}}-->
-          <!--</li>-->
-        <!--</ul>-->
       </div>
       <div style="height: 40px;"></div>
     </div>
@@ -40,14 +42,15 @@
             {title: 'V4',name:'a4'},
             {title: 'V5',name:'a5'},
             {title: 'V6',name:'a6'}],
-          result:'??',
+          result:'',
+          searchString:'',
           movies:[]
 
         }
       },
       mounted() {
 
-        this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=10', {}, {
+        this.$http.jsonp('https://api.douban.com/v2/movie/top250?count=15', {}, {
           headers: {
 
           },
@@ -75,33 +78,32 @@
 </script>
 
 <style>
-  .topBt{
-    position: absolute;
-    right: 50px;
-    top: 70px;
-    border: none;
-    background-color: darkseagreen;
-    border-width: 0px 0px 1px 1px;
-    border-color: grey;
-    border-style: solid;
+  #searchInput{
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 3%;
+    height: 20px;
+    width: 70%;
+    float: left;
+  }
+  #searchBt{
+    margin-top: 17px;
+    margin-left: 3%;
+    margin-right: 3%;
+    width: 15%;
+    float: left;
   }
   h1, h2 {
     font-weight: normal;
   }
-  .mainList{
+  #loading{
 
-    list-style: none;
-    width: 90%;
-    margin: auto;
-    padding-left: 0px;
-    margin-top: 20px;
+      width: 100%;
+      margin-top: 100px;
+      font: "Songti TC" bold 40px;
+      text-align: center;
+
   }
 
-  .mainListItem{
-
-    margin-top: 10px;
-    margin-left: 0px;
-    padding-top: 6px;
-    width: 100%;
-  }
 </style>

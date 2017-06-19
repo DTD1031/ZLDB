@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
+
 import Home from '@/components/homeView'
+import Ucenter from '@/components/Ucenter.vue'
 
 Vue.use(Router)
 
@@ -13,17 +14,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello
+      name:'homeV',
+      component:Home
     },{
       path: '/foo',
-      component:foo
+      component:Ucenter
     },{
       path: '/bar',
       component:bar
-    },{
-      path: '/home',
-      component:Home
     }
   ]
 })

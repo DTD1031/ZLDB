@@ -2,9 +2,9 @@
   <div id="app">
     <router-view></router-view>
     <div id="bottomDiv">
-      <router-link class="routClick" to="/home">页面1</router-link>
-      <router-link class="routClick" to="/bar">页面2</router-link>
-      <router-link class="routClick" to="/">页面3</router-link>
+      <router-link class="routClick" to="/">首页列表</router-link>
+      <router-link class="routClick" to="/foo">用户中心</router-link>
+      <router-link class="routClick" to="/bar">页面3</router-link>
     </div>
   </div>
 </template>
@@ -20,9 +20,9 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 0px;
+
 }
 
 
@@ -37,6 +37,7 @@ export default {
   }
   #bottomDiv{
 
+    text-align: center;
     position: fixed;
     background-color:lavender;
     bottom: 0px;
